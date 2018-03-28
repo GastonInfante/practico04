@@ -1,5 +1,5 @@
 #include "stdafx.h"
-
+#include "pointerArithmetic.h"
 
 void arithmetic() {
 	int indice[] = { 1,2,3,4,5,6,7,8,9,10 };

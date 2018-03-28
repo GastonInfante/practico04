@@ -1,11 +1,12 @@
 #include "stdafx.h"
+#include "swapIntegers.h"
 
 void swap_1(int *p1, int *p2)
 {
 	printf("\nSWAP_1: Los valores son: %p, %p", p1, p2);
-	int *aux = p1;
-	p1 = p2;
-	p2 = aux;
+	int aux = *p1;
+	*p1 = *p2;
+	*p2 = aux;
 	printf("\nSWAP_1: Los valores invertidos son: %p, %p", p1,p2);
 
 }

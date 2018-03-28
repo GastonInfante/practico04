@@ -2,7 +2,6 @@
 #include "pointerArithmetic.h"
 #include "swapIntegers.h"
 #include "generalController.h"
-#include "list.h"
 
 class nodo {
 public:
@@ -41,17 +40,36 @@ list::~list()
 
 void list::insert(int v)
 {
-	pnodo newNodo;
-	if (cleanList())
+	if (v == 0)
 	{
-		newNodo = new nodo(v);
-		if (!plist) plist = newNodo;
-		else plist->previousNodo = newNodo;
+		printf("El numero debe ser 1 o mayor");
 	}
-	else {
-		newNodo = new nodo(v, plist->nextNodo, plist);
-		plist->nextNodo = newNodo;
-		if (newNodo->nextNodo) newNodo->nextNodo->previousNodo = newNodo;
+	else
+	{
+		bool primo = true;
+		for (int num = 2; num < v && primo; num++)
+		{
+			if (v % num == 0)
+			{
+				primo = false;
+				break;
+			}
+		}
+		if (primo) printf("El valor ingresado es primo, no ha sido incluido en la lista");
+		else
+		{
+			if (cleanList())
+			{
+				pnodo newNodo = new nodo(v);
+				plist = newNodo;
+			}
+			else {
+				pnodo newNodo = new nodo(v, plist->nextNodo, plist);
+				plist->nextNodo = newNodo;
+				if (newNodo->nextNodo) newNodo->nextNodo->previousNodo = newNodo;
+			}
+			printf("El valor es primo y ha ingresado correctamente en la lista");
+		}
 	}
 }
 
@@ -93,36 +111,11 @@ void listExercise()
 	printf("Cuantos valores desea ingresar a la lista?\n");
 	scanf_s("%d", &menuExercise);
 	printf("Recuerde que solo puede ingresar valores enteros que no sean primos\n");
-	if (menuExercise == 0)
+	for (int i = 1; i <= menuExercise; i++)
 	{
-		printf("El numero debe ser 1 o mayor");
+		printf("\nIngrese el valor %d:\n", i);
+		scanf_s("%d", &value);
+		List.insert(value);
 	}
-	else
-	{
-		for (int i = 1; i <= menuExercise; i++)
-		{
-			bool primo = true;
-			printf("\nIngrese el valor %d:\n", i);
-			scanf_s("%d", &value);
-			for (int num = 2; num < value && primo; num++)
-			{
-				if (value % num == 0)
-				{
-					primo = false;
-				}
-			}
-			if (primo)
-			{
-				printf("El valor ingresado es primo");
-
-			}
-			else
-			{
-				List.insert(value);
-				printf("Ingresado correctamente"); 
-			}			
-		}
-	}
-	
 }
 
