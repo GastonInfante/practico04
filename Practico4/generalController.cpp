@@ -2,76 +2,9 @@
 #include "pointerArithmetic.h"
 #include "swapIntegers.h"
 #include "generalController.h"
+#include "Node.h"
+#include "List.h"
 
-class nodo {
-public:
-	nodo(int v, nodo *next = NULL, nodo *prev = NULL) :
-		value(v), nextNodo(next), previousNodo(prev) {}
-private:
-	int value;
-	nodo *nextNodo;
-	nodo *previousNodo;
-
-	friend class list;
-};
-
-typedef nodo *pnodo;
-
-class list {
-public:
-	list() : plist(NULL) {}
-	~list();
-	void insert(int v);
-	bool cleanList() { return plist == NULL; }
-private:
-	pnodo plist;
-};
-
-list::~list()
-{
-	pnodo aux;
-	while (plist) {
-		aux = plist;
-		plist = plist->nextNodo;
-		delete aux;
-	}
-}
-
-
-void list::insert(int v)
-{
-	if (v == 0)
-	{
-		printf("El numero debe ser 1 o mayor");
-	}
-	else
-	{
-		bool primo = true;
-		for (int num = 2; num < v && primo; num++)
-		{
-			if (v % num == 0)
-			{
-				primo = false;
-				break;
-			}
-		}
-		if (primo) printf("El valor ingresado es primo, no ha sido incluido en la lista");
-		else
-		{
-			if (cleanList())
-			{
-				pnodo newNodo = new nodo(v);
-				plist = newNodo;
-			}
-			else {
-				pnodo newNodo = new nodo(v, plist->nextNodo, plist);
-				plist->nextNodo = newNodo;
-				if (newNodo->nextNodo) newNodo->nextNodo->previousNodo = newNodo;
-			}
-			printf("El valor es primo y ha ingresado correctamente en la lista");
-		}
-	}
-}
 
 void steps(int choice)
 {
@@ -104,7 +37,7 @@ void firstExercises() {
 
 void listExercise()
 {
-	list List;
+	List list;
 
 	int menuExercise = 0;
 	int value = 0;
@@ -115,7 +48,10 @@ void listExercise()
 	{
 		printf("\nIngrese el valor %d:\n", i);
 		scanf_s("%d", &value);
-		List.insert(value);
+		list.insert(value);
 	}
+	printf("\n\nLos nodos en la lista son: \n");
+	list.showNodes(FALLING);
+
 }
 

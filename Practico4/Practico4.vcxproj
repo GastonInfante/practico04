@@ -148,6 +148,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="generalController.h" />
+    <ClInclude Include="List.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="pointerArithmetic.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="swapIntegers.h" />
@@ -155,7 +157,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="generalController.cpp" />
+    <ClCompile Include="List.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Node.cpp" />
     <ClCompile Include="pionterArithmetic.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
